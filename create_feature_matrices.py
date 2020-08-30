@@ -72,7 +72,7 @@ def energy(vector):
     return value
     
 
-def writeFileTimeSegmentation(sec, dwt_lvl, input_data_path, output_data_path):
+def writeFileTimeSegmentation(dataset, sec, input_data_path, dwt_lvl, output_data_path):
     frequency = 128
     if dataset == "deap":
         subjects = 32
@@ -93,9 +93,7 @@ def writeFileTimeSegmentation(sec, dwt_lvl, input_data_path, output_data_path):
             data = dictionary[b'data']
         elif dataset == "biomex-db":
             name = f"{input_data_path}/s0{i}.sav" if len(str(i)) == 1 else f"{input_data_path}/s{i}.sav"
-            print(name)
             file = joblib.load(name)
-            print("aaaaaaa")
             data = file['data']
         segmented_data = []
         
@@ -142,6 +140,6 @@ if __name__ == '__main__':
                     mkdir(f"{output_data_path}/lvl_{dwt_lvl}")
                     for time in times:
                         mkdir(f"{output_data_path}/lvl_{dwt_lvl}/{time}")
-                        writeFileTimeSegmentation(time, dwt_lvl, input_data_path, output_data_path, dataset)
+                        writeFileTimeSegmentation(dataset, time, input_data_path, dwt_lvl, output_data_path)
             except:
                 print("Error")

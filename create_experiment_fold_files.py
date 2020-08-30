@@ -10,7 +10,7 @@ def read_file(file_name, channels, level_of_decomposition):
     dataMatrix = []
     for i in aux:
         vector = []
-        for j in range(0,channels*(level_of_decomposition+1)): #32 = numero de canales de EEG
+        for j in range(0,channels*(level_of_decomposition+1)):
             vector.append(i[j])
         dataMatrix.append(vector)
     return dataMatrix
